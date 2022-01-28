@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DepartmentController extends Controller
 {
@@ -14,7 +15,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+         return Department::where('is_active',1)->with(['tasks'])->get();
     }
 
     /**
@@ -31,11 +32,23 @@ class DepartmentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|unique:departments',
+            'user_id' => 'required',
+        ]);
+
+        $department = new Department();
+        $department->title     = $request->title;
+        $department->user_id   = $request->user_id;
+        $department->is_active = $request->is_active;
+        $department->save();
+
+        return response()->json([ 'message'=> 'Department Saved'],200);
+
     }
 
     /**

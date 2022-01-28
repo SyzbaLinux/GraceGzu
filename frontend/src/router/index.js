@@ -15,6 +15,12 @@ import AdminDashboard from "../Pages/Admin/AdminDashboard";
 import Dashboard from "../Pages/Admin/Dashboard";
 import Home from "../Pages/Task/Home";
 import Tasks from "../Pages/Task/Tasks";
+import Forbidden from "../Pages/Errors/Forbidden";
+import Departments from "../Pages/Admin/Departments";
+import Notifications from "../Pages/Admin/Notifications";
+import Search from "../Pages/Admin/Search";
+import Projects from "../components/Projects";
+import AllUsers from "../components/AllUsers";
 
 
 Vue.use(VueRouter)
@@ -88,6 +94,36 @@ const routes = [
                 name: 'admin.dashboard',
                 component: Dashboard,
                 meta:{  middleware: [auth,admin] },
+            },
+            {
+                path: 'departments',
+                name: 'admin.departments',
+                component: Departments,
+                meta:{  middleware: [auth,admin] },
+            },
+            {
+                path: 'notifications',
+                name: 'admin.notifications',
+                component: Notifications,
+                meta:{  middleware: [auth,admin] },
+            },
+            {
+                path: 'projects',
+                name: 'admin.projects',
+                component: Projects,
+                meta:{  middleware: [auth,admin] },
+            },
+            {
+                path: 'search',
+                name: 'admin.search',
+                component: Search,
+                meta:{  middleware: [auth,admin] },
+            },
+            {
+                path: 'users',
+                name: 'admin.users',
+                component: AllUsers,
+                meta:{  middleware: [auth,admin] },
             }
         ]
     },
@@ -105,8 +141,8 @@ const routes = [
     },
 
     {
-        path:'not-allowed',
-        component:NotFound,
+        path:'/not-allowed',
+        component:Forbidden,
         name:'error-403',
         meta:{   auth: undefined  }
     },

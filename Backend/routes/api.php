@@ -22,3 +22,13 @@ Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('user',  [\App\Http\Controllers\AuthController::class, 'user'])->middleware(['auth:api']);
     Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->middleware(['auth:api']);
 });
+
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => 'auth:api'
+], function ($router) {
+
+    Route::resource('department', \App\Http\Controllers\DepartmentController::class);
+    Route::resource('users', \App\Http\Controllers\UsersController::class);
+
+});
