@@ -8,14 +8,14 @@
                         <div class="col-lg-3 col-md-3">
                             <div class="footer-widget text-center-sm">
                                 <h3 class="widget-title">Lawfirms Finder</h3>
-
+                            
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3">
                             <div class="footer-widget text-center-sm">
                                 <h3 class="widget-title">Legal Resources</h3>
                                 <ul>
-
+                                
                                 </ul>
                             </div>
                         </div>
@@ -54,14 +54,14 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="footer-bottom">
                 <v-container>
                     <v-row>
                         <div class="col-lg-4 col-md-6 text-center-sm">
                             <p class="mb-0">&copy; 2021 Lawfirms Finder </p>
                         </div>
-
+                        
                         <div class="text-right col-lg-4 col-md-6 text-center-sm">
                             <ul class="footer-bottom-social text-center-sm">
                                 <li>
@@ -91,7 +91,7 @@
                                 </li>
                             </ul>
                         </div>
-
+                        
                         <div class="text-right col-lg-4 col-md-6 text-center-sm">
                             <div class="copyright-social text-center-sm">
                                 <ul>
@@ -113,11 +113,10 @@
 </template>
 
 <script>
-    export default {
-        name: "Footer"
-    }
+export default {
+    name: "Footer"
+}
 </script>
 
 <style scoped>
-
 </style>

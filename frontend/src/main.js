@@ -3,6 +3,7 @@ import App from './App.vue'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import http from './plugins/http'
+
 import router from './router'
 
 import * as VueAos from 'vue-aos'
@@ -14,6 +15,7 @@ Vue.use(VueMeta)
 import VueParticles from 'vue-particles'
 Vue.use(VueParticles)
 
+require('./plugins/helpers')
 
 import "./scss/web.css";
 

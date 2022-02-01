@@ -10,12 +10,22 @@ class Department extends Model
 {
     use HasFactory;
 
-    public function users(){
+    public function owner(){
+        return $this->belongsTo(User::class,'user_id');
+    }
 
+    public function users(){
         return $this->belongsToMany(User::class, 'table_users_department','department_id','user_id');
+    }
+
+    public function projects(){
+
+        return $this->belongsToMany(Project::class,'project_department','project_id','department_id');
     }
 
     public function tasks(){
         return $this->belongsToMany(Task::class,'table_department_tasks','department_id','task_id');
     }
+
+
 }

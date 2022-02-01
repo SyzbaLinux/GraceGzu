@@ -23,23 +23,25 @@
           <div class="text-center mt-15 container">
             <v-card  class="mx-auto text-center" max-width="500">
               <v-card-title class="mb-5 pt-5">
-                <v-toolbar dark dense color="primary">
+                <v-toolbar dark dense color="primary" flat>
                   <v-toolbar-title>
                     LogIn
                   </v-toolbar-title>
                 </v-toolbar>
               </v-card-title>
 
-                <v-alert
-                        border="left"
-                        dismissible
-                        icon="mdi-alert"
-                        type="error"
-                        v-if="get_gen_errors"
-                        @click="clearGenErrors"
-                    >
-                        {{ get_gen_errors }}
-                </v-alert>
+               <v-card-text>
+                   <v-alert
+                           border="left"
+                           dismissible
+                           icon="mdi-alert"
+                           type="error"
+                           v-if="get_gen_errors"
+                           @click="clearGenErrors"
+                   >
+                       {{ get_gen_errors }}
+                   </v-alert>
+               </v-card-text>
 
 
               <v-card-text>
@@ -83,13 +85,14 @@
                        
 
                          <v-btn
-                            color="error"
+                            color="primary"
                             type="submit"
                             :loading="loading"
                             block
+                            :disabled="btnDisabled"
                         >
-                                        <v-icon>mdi-account-lock</v-icon> Login
-                                    </v-btn>
+                            <v-icon>mdi-account-lock</v-icon> Login
+                        </v-btn>
                     </v-form>
               </v-card-text>
 
@@ -116,8 +119,8 @@
                     loading:false,
                     showPassword: false,
                     form:{
-                        email: null,
-                        password: null,
+                        email: '',
+                        password: '',
                         remember_me: false,
                     },
 
@@ -140,7 +143,12 @@
                       email_errors: 'auth/get_email_errors',
                       password_errors: 'auth/get_password_errors',
                       get_gen_errors: 'auth/get_gen_errors',
-                  })
+                  }),
+
+                  btnDisabled(){
+
+                      return (this.form.email.length  && this.form.password.length) < 5;
+                  }
               },
 
         watch:{

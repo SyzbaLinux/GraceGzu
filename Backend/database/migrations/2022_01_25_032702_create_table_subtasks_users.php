@@ -18,6 +18,9 @@ class CreateTableSubtasksUsers extends Migration
             $table->unsignedBigInteger('sub_task_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('sub_task_id')->references('id')->on('tasks');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

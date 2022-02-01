@@ -30,5 +30,9 @@ Route::group([
 
     Route::resource('department', \App\Http\Controllers\DepartmentController::class);
     Route::resource('users', \App\Http\Controllers\UsersController::class);
+    Route::get('roles', [\App\Http\Controllers\UsersController::class,'roles']);
+    Route::resource('tasks', \App\Http\Controllers\TaskController::class);
+    Route::resource('projects', \App\Http\Controllers\ProjectController::class);
+    Route::get('stats', [\App\Http\Controllers\AdminController::class,'index']);
 
 });

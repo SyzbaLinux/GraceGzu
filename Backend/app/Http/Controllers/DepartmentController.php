@@ -15,7 +15,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-         return Department::where('is_active',1)->with(['tasks'])->get();
+         return Department::where('is_active',1)
+             ->with(['tasks','users','owner'])->get();
     }
 
     /**
@@ -44,7 +45,7 @@ class DepartmentController extends Controller
         $department = new Department();
         $department->title     = $request->title;
         $department->user_id   = $request->user_id;
-        $department->is_active = $request->is_active;
+        $department->is_active = $request->is_active? : 0;
         $department->save();
 
         return response()->json([ 'message'=> 'Department Saved'],200);
@@ -82,7 +83,18 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|unique:departments',
+            'user_id' => 'required',
+        ]);
+
+        $department =   Department::where('id',$request->id)->firstOrFail();
+        $department->title     = $request->title;
+        $department->user_id   = $request->user_id;
+        $department->is_active = $request->is_active? : 0;
+        $department->save();
+
+        return response()->json([ 'message'=> 'Department Updated'],200);
     }
 
     /**
@@ -93,6 +105,8 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        if($department->delete()){
+            return response()->json([ 'message'=> 'Department Deleted'],200);
+        }
     }
 }

@@ -219,14 +219,17 @@
             </v-list>
         </v-navigation-drawer>
 
-        <v-app-bar app clipped-left>
+        <v-app-bar class="elevation-2" app clipped-left>
             <v-icon class="mx-1" @click="drawer = !drawer">
                 mdi-menu
             </v-icon>
-            <v-toolbar-title>Task & Project Manager</v-toolbar-title>
+            <v-spacer/>
+                <v-toolbar-title>
+                    SIRDC Project Manager
+                </v-toolbar-title>
             <v-spacer/>
         </v-app-bar>
-        <v-main>
+        <v-main class="mb-10">
             <v-container fluid class="py-5">
                 <router-view></router-view>
             </v-container>
@@ -262,37 +265,35 @@ export default {
         users:[],
     
         links:[
-                  
-                    {
-                        title:'Department',
-                        to:'admin.departments',
-                        icon:'mdi-office-building-cog'
-                    },
-                    {
-                        title:'All Users',
-                        to:'admin.users',
-                        icon:'mdi-account-group'
-                    },
                     {
                         title:'Home',
                         to:'admin.dashboard',
                         icon:'mdi-home'
                     },
                     {
+                        title:'Department',
+                        to:'admin.departments',
+                        icon:'mdi-office-building-cog'
+                    },
+                        {
+                            title:'Add New',
+                            to:'admin.addnew',
+                            icon:'mdi-checkbox-marked-circle-plus-outline'
+                        },
+                    {
+                        title:'All Users',
+                        to:'admin.users',
+                        icon:'mdi-account-group'
+                    },
+                    {
                         title:'Projects',
                         to:'admin.projects',
                         icon:'mdi-briefcase-variant'
-                    },
-                    
-                    {
-                        title:'Search',
-                        to:'admin.search',
-                        icon:'mdi-magnify'
                     }
         ],
         
      
-      departmentLoading:false,
+        departmentLoading:false,
     
         departmentRules: [
             v => !!v || 'Department Name is required',
@@ -342,6 +343,7 @@ export default {
           await axios.post('admin/department', this.departmentForm).then(()=>{
     
               this.fetchDepartments()
+              this.$store.dispatch('dashboard/fetchAdminStats')
               this.dialog = false
         
           }).catch(error => {

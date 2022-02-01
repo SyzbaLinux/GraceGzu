@@ -19,6 +19,8 @@ class CreateDepartmentsTable extends Migration
             $table->unSignedBigInteger('user_id');
             $table->boolean('is_active')->default(0);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

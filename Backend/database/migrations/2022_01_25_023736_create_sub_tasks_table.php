@@ -25,6 +25,9 @@ class CreateSubTasksTable extends Migration
             $table->enum('status',['Doing','Done','Completed','Created'])->default('Created');
             $table->enum('priority',['Urgent','High','Normal','Low'])->default('Normal');
             $table->timestamps();
+
+            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

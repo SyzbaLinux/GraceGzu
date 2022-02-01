@@ -20,6 +20,10 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->mediumText('comment');
             $table->timestamps();
+
+            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->foreign('sub_task_id')->references('id')->on('sub_tasks');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

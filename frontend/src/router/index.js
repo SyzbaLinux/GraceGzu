@@ -19,8 +19,10 @@ import Forbidden from "../Pages/Errors/Forbidden";
 import Departments from "../Pages/Admin/Departments";
 import Notifications from "../Pages/Admin/Notifications";
 import Search from "../Pages/Admin/Search";
-import Projects from "../components/Projects";
-import AllUsers from "../components/AllUsers";
+import Projects from "../Pages/Admin/Projects";
+import AllUsers from "../Pages/Admin/AllUsers";
+import AdminAddNew from "../Pages/Admin/AdminAddNew";
+import DepartmentView from "../Pages/Admin/DepartmentView";
 
 
 Vue.use(VueRouter)
@@ -87,18 +89,22 @@ const routes = [
     {
         path:'/admin',
         component: AdminDashboard,
-        meta:{  middleware: [auth,admin] },
         children: [
             {
                 path: 'dashboard',
                 name: 'admin.dashboard',
                 component: Dashboard,
-                meta:{  middleware: [auth,admin] },
             },
             {
                 path: 'departments',
                 name: 'admin.departments',
                 component: Departments,
+                meta:{  middleware: [auth,admin] },
+            },
+            {
+                path: 'department/:id',
+                name: 'admin.departments.view',
+                component: DepartmentView,
                 meta:{  middleware: [auth,admin] },
             },
             {
@@ -123,6 +129,12 @@ const routes = [
                 path: 'users',
                 name: 'admin.users',
                 component: AllUsers,
+                meta:{  middleware: [auth,admin] },
+            },
+            {
+                path: 'admin-new',
+                name: 'admin.addnew',
+                component: AdminAddNew,
                 meta:{  middleware: [auth,admin] },
             }
         ]
