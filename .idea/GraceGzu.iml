@@ -29,6 +29,7 @@
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/guzzlehttp/psr7" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/laravel/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/laravel/helpers" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/laravel/passport" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/laravel/sail" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/laravel/sanctum" />

@@ -186,14 +186,12 @@ export default {
 
                         commit('SET_TOKEN', null)
                         commit('SET_USER', null)
-                        axios.defaults.baseURL = 'http://127.0.0.1:8000/api/';
                         console.log(error)
                     })
 
             } catch (e) {
                 commit('SET_TOKEN', null)
                 commit('SET_USER', null)
-                axios.defaults.baseURL = '/api/';
             }
         },
 
