@@ -9,6 +9,8 @@ export default {
         password_error:null,
         phone_errors:null,
         fullname_error:null,
+        name_error:null,
+        title_error:null,
         gen_error:null,
         terms_errors:null,
     },
@@ -29,6 +31,12 @@ export default {
 
         get_password_errors(state){
             return state.password_error
+        },
+        get_name_errors(state){
+            return state.name_error
+        },
+        get_title_errors(state){
+            return state.title_error
         },
 
         get_phone_errors(state){
@@ -61,6 +69,14 @@ export default {
 
         SET_EMAIL_ERROR(state,email_error){
             state.email_error = email_error
+        },
+
+        SET_NAME_ERROR(state,name_error){
+            state.name_error = name_error
+        },
+
+        SET_TITLE_ERROR(state,title_error){
+            state.title_error = title_error
         },
 
         SET_PASSWORD_ERROR(state,password_error){

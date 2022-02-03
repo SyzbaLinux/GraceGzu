@@ -82,10 +82,10 @@
                     </v-menu>
                 </div>
                 
-                <v-btn to="/" small color="primary"   class="mx-1 hidden-md-and-up">
-                    <v-icon>mdi-account</v-icon>
-                </v-btn>
-                
+<!--                <v-btn to="/" small color="primary"   class="mx-1 hidden-md-and-up">-->
+<!--                    <v-icon>mdi-account</v-icon>-->
+<!--                </v-btn>-->
+<!--                -->
                 <v-menu
                     bottom
                     origin="center center"
@@ -129,8 +129,8 @@
                 <router-view></router-view>
             </transition>
         </v-main>
-        
-        
+
+
         <Footer/>
     </v-app>
 </template>

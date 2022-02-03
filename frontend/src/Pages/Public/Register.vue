@@ -45,39 +45,51 @@
           <v-card-text>
             <v-form @submit.prevent="register">
               <v-text-field
-                  v-model="form.title"
-                  prepend-inner-icon="mdi-account"
-                  label="Work Title"
-                  outlined
-                  dense
-                  type="text"
+                      :rules="titleRules"
+                      :error-messages="title_errors"
+                      @input="clearTitleErrors"
+                      v-model="form.title"
+                      prepend-inner-icon="mdi-account"
+                      label="Work Title"
+                      outlined
+                      dense
+                      type="text"
               />
 
               <v-text-field
-                  v-model="form.name"
-                  prepend-inner-icon="mdi-account"
-                  label="Name"
-                  outlined
-                  dense
-                  type="text"
+                      :rules="nameRules"
+                      :error-messages="name_errors"
+                      @input="clearNameErrors"
+                      v-model="form.name"
+                      prepend-inner-icon="mdi-account"
+                      label="Name"
+                      outlined
+                      dense
+                      type="text"
               />
               <v-text-field
-                  v-model="form.email"
-                  prepend-inner-icon="mdi-email"
-                  label="Email"
-                  type="email"
-                  outlined
-                  dense
+                      :rules="emailRules"
+                      :error-messages="email_errors"
+                      @input="clearEmailErrors"
+                      v-model="form.email"
+                      prepend-inner-icon="mdi-email"
+                      label="Email"
+                      type="email"
+                      outlined
+                      dense
               />
               <v-text-field
-                  v-model="form.password"
-                  prepend-inner-icon="mdi-lock"
-                  label="Password"
-                  outlined
-                  dense
-                  :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                  :type="showPassword ? 'text' : 'password'"
-                  @click:append="showPassword = !showPassword"
+                      :rules="passwordRules"
+                      :error-messages="password_errors"
+                      @input="clearPasswordErrors"
+                      v-model="form.password"
+                      prepend-inner-icon="mdi-lock"
+                      label="Password"
+                      outlined
+                      dense
+                      :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                      :type="showPassword ? 'text' : 'password'"
+                      @click:append="showPassword = !showPassword"
               />
               <v-text-field
                   v-model="form.password_confirmation"
@@ -124,21 +136,32 @@ export default {
       loading:false,
       showPassword: false,
       form:{
-            name: null,
-            title: null,
+            name: '',
+            title: '',
             accepted_terms: 1,
-            email: null,
-            password: null,
-            password_confirmation: null,
+            email: '',
+            password: '',
+            password_confirmation: '',
       },
+
+
+      nameRules: [
+        v => !!v || 'Fullname is required',
+        v => v.length >= 3 || 'Name must be more than 3 characters',
+      ],
+
+      titleRules: [
+        v => !!v || 'Work Title is required',
+      ],
 
       passwordRules: [
         v => !!v || 'Password is required',
-        v => v.length >= 5 || 'Name must be more than 6 characters',
+        v => v.length >= 5 || 'Password must be more than 6 characters',
       ],
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+/.test(v) || 'E-mail must be valid',
+        // v => v.length >= 100 || 'Email is Taken, Please login',
       ],
     }
 
@@ -151,6 +174,8 @@ export default {
       email_errors: 'auth/get_email_errors',
       password_errors: 'auth/get_password_errors',
       get_gen_errors: 'auth/get_gen_errors',
+      name_errors: 'auth/get_name_errors',
+      title_errors: 'auth/get_title_errors',
     })
   },
 
@@ -213,6 +238,13 @@ export default {
 
     clearGenErrors(){
       this.$store.commit('auth/SET_GENERAL_ERROR', null)
+    },
+
+    clearNameErrors(){
+      this.$store.commit('auth/SET_NAME_ERROR', null)
+    },
+    clearTitleErrors(){
+      this.$store.commit('auth/SET_TITLE_ERROR', null)
     },
 
 

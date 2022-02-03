@@ -48,7 +48,7 @@
                 <v-form class="login-signup-form" v-model="valid" @submit.prevent="login">
                         <v-text-field
                             v-model="form.email"
-                             :rules="emailRules"
+                            :rules="emailRules"
                             :error-messages="email_errors"
                             @input="clearEmailErrors"
                             required
@@ -223,7 +223,8 @@
 
     .main-hero{
         padding-top: 60px;
-        min-height: 600px;
+        min-height: 90vh;
+        position: relative;
         background-image: url('../../assets/images/auth-bg.png');
         background-position: bottom;
         background-size: cover;
@@ -234,7 +235,7 @@
 
     .login-background {
       width: 100%;
-      height: 75vh;
+      height: 90vh;
       position: absolute;
     }
 </style>

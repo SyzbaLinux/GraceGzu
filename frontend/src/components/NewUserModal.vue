@@ -39,6 +39,17 @@
                                 :error-messages="emailRulesErrors"
                                 dense
                         />
+
+                        <v-select
+                                label="User Departments"
+                                :items="departments"
+                                item-text="title"
+                                item-value="id"
+                                outlined
+                                v-model="userForm.departments"
+                                :error-messages="departmentsRulesErrors"
+                                dense
+                        />
                         <v-select
                                 label="User Roles"
                                 :items="roles"
@@ -65,6 +76,7 @@
                     <v-btn
                             color="success"
                             class="menu-btn"
+                            @click="newUserSave"
                     >
                         Add New User
                     </v-btn>
@@ -90,6 +102,7 @@
 
                 users:[],
                 roles:[],
+                departments:[],
 
                 userForm:{ 
                     id:'',
@@ -97,7 +110,8 @@
                     title:'',
                     email:'', 
                     password:'',
-                    roles:[]
+                    roles:[],
+                    departments:[]
                 },
 
                 userLoading:false,
@@ -127,18 +141,18 @@
 
             this.fetchUsers()
             this.fetchRoles()
+            this.fetchDepartments()
         },
 
         methods: {
 
-            async saveDept(){
-                await axios.post('admin/department', this.userForm).then(res=>{
+            async newUserSave(){
+                await axios.post('admin/users', this.userForm).then(res=>{
                     this.successMessage(res.data.message)
                     this.$emit('close')
 
                 }).catch(error=>{
                     this.nameRulesErrors = error.response.data.errors.title
-                    this.departmentUserErrors = error.response.data.errors.user_id
                 })
             },
 
@@ -160,7 +174,17 @@
                 }).catch(error => {
                     console.log(error.response.data.errors)
                 })
-            }
+            },
+
+            async fetchDepartments(){
+                await axios.get('admin/department').then(resp=>{
+
+                    this.departments = resp.data
+
+                }).catch(error => {
+                    console.log(error.response.data.errors.message)
+                })
+            },
         }
     }
 </script>
