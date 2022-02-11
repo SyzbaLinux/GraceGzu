@@ -53,6 +53,7 @@
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/nunomaduro/collision" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/nyholm/psr7" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/opis/closure" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/orangehill/iseed" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/paragonie/constant_time_encoding" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/phar-io/manifest" />
@@ -98,6 +99,7 @@
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/sebastian/type" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/sebastian/version" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/spatie/laravel-permission" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/staudenmeir/eloquent-has-many-deep" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/swiftmailer/swiftmailer" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/symfony/css-selector" />

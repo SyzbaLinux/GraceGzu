@@ -39,6 +39,7 @@ class ProjectController extends Controller
             'name'        =>'required',
             'status'      =>'required',
             'user_id'     =>'required',
+            'stage_id'     =>'required',
             'departments'  =>'required',
         ]);
 
@@ -48,10 +49,11 @@ class ProjectController extends Controller
         $project->start_date  = $request->start_date;
         $project->end_date    = $request->end_date;
         $project->user_id     = $request->user_id;
+        $project->stage_id     = $request->stage_id;
 
         $project->save();
 
-        $project->sync($request->departments);
+        $project->departments()->sync($request->departments);
 
         return response()->json([ 'message'=> 'Project Saved'],200);
 
@@ -63,9 +65,10 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show($id)
     {
-        //
+         $project = Project::where('id',$id)->with('tasks')->firstOrFail();
+         return $project;
     }
 
     /**

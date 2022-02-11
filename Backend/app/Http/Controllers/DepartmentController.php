@@ -16,7 +16,9 @@ class DepartmentController extends Controller
     public function index()
     {
          return Department::where('is_active',1)
-             ->with(['tasks','users','owner'])->get();
+             ->with(['tasks','users','owner'])
+             ->orderBy('title','ASC')
+             ->get();
     }
 
     /**
@@ -60,7 +62,9 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        //
+        return  Department::where('id',$department->id)
+            ->with(['users','projects','owner'])
+            ->firstOrFail();
     }
 
     /**

@@ -126,8 +126,10 @@
       <path value="$PROJECT_DIR$/Backend/vendor/phpseclib/phpseclib" />
       <path value="$PROJECT_DIR$/Backend/vendor/league/oauth2-server" />
       <path value="$PROJECT_DIR$/Backend/vendor/league/event" />
-      <path value="$PROJECT_DIR$/Backend/vendor/spatie/laravel-permission" />
       <path value="$PROJECT_DIR$/Backend/vendor/laravel/helpers" />
+      <path value="$PROJECT_DIR$/Backend/vendor/orangehill/iseed" />
+      <path value="$PROJECT_DIR$/Backend/vendor/staudenmeir/eloquent-has-many-deep" />
+      <path value="$PROJECT_DIR$/Backend/vendor/spatie/laravel-permission" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

@@ -13,6 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+
+// Catch Any lost user
+Route::get('/{any}', function () {
     return view('welcome');
+})->where('any', '^(?!api).*$')->name('admin');
+
+Route::get('migrate',function(){
+    \Artisan::call('migrate:fresh --seed');
+    return 'Fresh Migrated & Seed Successfully';
 });
+
+Route::get('composer-update',function(){
+    $result =  shell_exec('cd ../ && composer update');
+
+    dd($result);
+});
+

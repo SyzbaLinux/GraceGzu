@@ -9,11 +9,15 @@ class Project extends Model
 {
     use HasFactory;
 
+    protected $withCount = [
+        'tasks',
+    ];
+
     public function tasks(){
         return $this->hasMany(Task::class);
     }
 
-    public function department(){
-        return $this->belongsTo(Department::class);
+    public function departments(){
+        return $this->belongsToMany(Department::class,'project_department','project_id','department_id');
     }
 }

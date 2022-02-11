@@ -20,7 +20,7 @@ class Department extends Model
 
     public function projects(){
 
-        return $this->belongsToMany(Project::class,'project_department','project_id','department_id');
+        return $this->belongsToMany(Project::class,'project_department','department_id','project_id');
     }
 
     public function tasks(){

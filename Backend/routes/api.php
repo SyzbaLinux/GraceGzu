@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 //TASK MANAGER APP API
 Route::group(['prefix' => 'tasks-manager'], function ($router) {
 
+
+    Route::get('stages', [\App\Http\Controllers\StagesController::class, 'index']);
+    Route::get('users-list', [\App\Http\Controllers\UsersController::class, 'usersList']);
+
     //Auth Management
     Route::group(['prefix' => 'auth'], function ($router) {
         Route::post('register', [\App\Http\Controllers\AuthController::class, 'register']);
@@ -32,14 +36,29 @@ Route::group(['prefix' => 'tasks-manager'], function ($router) {
 
 
 
-    Route::group(['prefix' => 'admin','middleware' => 'auth:api'], function ($router) {
+    Route::group(['prefix' => 'admin',
+        'middleware' => 'auth:api'
+    ], function ($router) {
 
+        Route::post('users-sync', [\App\Http\Controllers\UsersController::class,'linkDept']);
         Route::resource('department', \App\Http\Controllers\DepartmentController::class);
         Route::resource('users', \App\Http\Controllers\UsersController::class);
         Route::get('roles', [\App\Http\Controllers\UsersController::class, 'roles']);
         Route::resource('tasks', \App\Http\Controllers\TaskController::class);
         Route::resource('projects', \App\Http\Controllers\ProjectController::class);
+        Route::resource('stages', \App\Http\Controllers\StagesController::class);
         Route::get('stats', [\App\Http\Controllers\AdminController::class, 'index']);
+
+    });
+
+
+
+    Route::group(['prefix' => 'user',
+        'middleware' => 'auth:api'
+    ], function ($router) {
+
+        Route::get('department', [\App\Http\Controllers\UserTasksController::class,'departments']);
+
 
     });
 });

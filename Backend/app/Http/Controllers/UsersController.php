@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 
@@ -11,7 +13,40 @@ use Illuminate\Http\Request;
 class UsersController
 {
     public function index(){
-        return User::all();
+
+        return User::orderBy('id','DESC')
+            ->with(['roles','departments','tasks.sub_tasks'])
+            ->get();
+    }
+
+    public function usersList(){
+
+        return User::orderBy('id','DESC')->get();
+    }
+
+
+    public function linkDept(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'user_id'          => 'required',
+            'department_id'          => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(
+                [
+                    'errors'  => $validator->errors(),
+                ],422);
+        }
+
+
+        $user = User::where('id',$request->user_id)->first();
+
+        $user->departments()->sync($request->department_id);
+
+
+        return  response()->json([
+            'message'=>'User Added to Department'
+        ],200);
     }
 
     public function roles(){
@@ -22,14 +57,6 @@ class UsersController
 
     public function store(Request $request){
 
-//        :'',
-//        :'',
-//        :'',
-//        :'',
-//        :'',
-//        roles:[]
-//        departments:[]
-
         $user = new User();
 
         $user->name = $request->name;
@@ -39,6 +66,33 @@ class UsersController
 
         $user->save();
 
+        $user->departments()->sync($request->departments);
+        $user->roles()->sync($request->roles);
+
+
+    }
+
+
+    public function destroy($id){
+
+
+        $department = Department::where('user_id',$id)->first();
+
+            if($department){
+
+                return  response()->json([
+                    'message'=>'User is a Department Leader'
+                ],500);
+
+            }else{
+
+                $user = User::where('id',$id)->first();
+
+                $user->delete();
+                return  response()->json([
+                    'message'=>'User Deleted'
+                ],200);
+            }
 
     }
 

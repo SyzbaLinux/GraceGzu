@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
+use App\Models\Tutor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -14,18 +16,12 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'fname'          => 'required|max:255',
-            'lname'          => 'required|max:255',
+            'name'          => 'required|max:255',
+            'mobile'          => 'required',
             'email'          => 'required|email|unique:users',
             'password'       => 'required|confirmed|min:5',
             'accepted_terms' => 'required',
-        ],
-            [
-                'fname.required'=>'First Name is required',
-                'lname.required'=>'Last Name is required',
-                'accepted_terms.required'=>'Please read and accept the terms and conditions',
-            ]
-        );
+        ]);
         if ($validator->fails()) {
             return response()->json(
                 [
@@ -33,25 +29,15 @@ class AuthController extends Controller
                 ],422);
         }
 
-        if($request->accepted_terms == 0){
-            return response()->json(
-                [
-                    'errors'  => [
-                       'terms_errors' =>  ['Please Accept out terms and condtions']
-                    ],
-                ],422);
-        }
 
         $user = new User();
 
-        $user->fname    = $request->fname;
-        $user->lname    = $request->lname;
-        $user->email    = $request->email;
-        $user->role     = 'user' ;
+        $user->name    = $request->name;
+        $user->mobile  = $request->mobile;
+        $user->email   = $request->email;
         $user->password = bcrypt($request->password);
-        $user->mobile    = $request->mobile;
+        $user->email    = $request->email;
         $user->save();
-
         $token = $user->createToken('API Token')->accessToken;
         return response([ 'user' => $user, 'token' => $token]);
     }

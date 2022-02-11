@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,HasRoles;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +22,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+    ];
+
+    protected $withCount = [
+        'tasks',
     ];
 
     /**
@@ -40,4 +46,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function departments(){
+        return $this->belongsToMany(Department::class,'table_users_department','user_id','department_id');
+    }
+
+    public function tasks(){
+        return $this->belongsToMany(Task::class,'table_tasks_users','task_id','user_id');
+
+    }
 }

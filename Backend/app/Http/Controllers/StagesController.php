@@ -14,7 +14,7 @@ class StagesController extends Controller
      */
     public function index()
     {
-        //
+         return Stages::all();
     }
 
     /**
@@ -35,7 +35,19 @@ class StagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->validate([
+            'name'        =>'required|unique:stages',
+        ]);
+
+         $stage = new Stages();
+         $stage->name = $request->name;
+
+         $stage->save();
+
+         return response()->json([
+             'message' =>'Stage Saved'
+         ]);
     }
 
     /**

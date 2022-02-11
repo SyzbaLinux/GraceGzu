@@ -19,7 +19,11 @@ class Task extends Model
 
 
     public function users(){
-        return $this->belongsToMany(Task::class,'table_tasks_users','task_id','user_id');
+        return $this->belongsToMany(User::class,'table_tasks_users','task_id','user_id');
+    }
+
+    public function sub_tasks(){
+        return $this->hasMany(SubTask::class);
     }
 
 
