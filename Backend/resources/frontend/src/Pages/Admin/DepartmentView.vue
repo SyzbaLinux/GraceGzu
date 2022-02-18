@@ -107,12 +107,12 @@
 
                              </v-card-text>
                              <v-progress-linear
-                                     value="40"
+                                     :value="department.tasks.length"
                                      :size="70"
                                      :width="7"
                                      top
                                      height="10"
-                                     color="error">
+                                     color="blue">
 
                              </v-progress-linear>
                          </v-card>

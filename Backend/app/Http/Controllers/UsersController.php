@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
@@ -75,24 +76,30 @@ class UsersController
 
     public function destroy($id){
 
+        return  response()->json([
+            'message'=>'Cannot Delete Users at the moment!'
+        ],200);
 
-        $department = Department::where('user_id',$id)->first();
 
-            if($department){
-
-                return  response()->json([
-                    'message'=>'User is a Department Leader'
-                ],500);
-
-            }else{
-
-                $user = User::where('id',$id)->first();
-
-                $user->delete();
-                return  response()->json([
-                    'message'=>'User Deleted'
-                ],200);
-            }
+//        $department = Department::where('user_id',$id)->first();
+//
+//            if($department){
+//                return  response()->json([
+//                    'message'=>'User is a Department Leader'
+//                ],200);
+//
+//            }else{
+//
+//
+//                if(DB::table('table_users_department')->where('user_id', $id)->delete()){
+//
+//                    $user = User::where('id',$id)->first();
+//                    $user->delete();
+//                    return  response()->json([
+//                        'message'=>'User Deleted'
+//                    ],200);
+//                }
+//            }
 
     }
 

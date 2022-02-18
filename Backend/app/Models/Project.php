@@ -11,6 +11,7 @@ class Project extends Model
 
     protected $withCount = [
         'tasks',
+        'departments'
     ];
 
     public function tasks(){
@@ -20,4 +21,6 @@ class Project extends Model
     public function departments(){
         return $this->belongsToMany(Department::class,'project_department','project_id','department_id');
     }
+
+
 }

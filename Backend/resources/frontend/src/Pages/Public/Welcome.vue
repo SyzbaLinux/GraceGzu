@@ -21,11 +21,17 @@
                     clickMode="push"
             ></vue-particles>
           <div class="text-center mt-15 container">
+
+              <v-avatar   size="90" color="primary" class="mb-5">
+                    <v-icon color="white">mdi-shield mdi-48px</v-icon>
+              </v-avatar>
+
+
             <v-card  class="mx-auto text-center" max-width="500">
               <v-card-title class="mb-5 pt-5">
                 <v-toolbar dark dense color="primary" flat>
-                  <v-toolbar-title>
-                    LogIn
+                  <v-toolbar-title class="w-100 text--center">
+                    Welcome to SIDRC Projects Manager LogIn
                   </v-toolbar-title>
                 </v-toolbar>
               </v-card-title>
@@ -82,7 +88,7 @@
                                 Forgot Password?
                             </router-link>
                         </div>
-                       
+
 
                          <v-btn
                             color="primary"
@@ -98,10 +104,10 @@
 
               <v-card-actions class="elevation-3 mt-5 mb-5">
                 <v-container class="text-center">
-                  New to our here? <router-link :to="{ name:'register'}">Create Free Account</router-link>
+                  New to our here? <router-link :to="{ name:'register'}">Create Account</router-link>
                 </v-container>
               </v-card-actions>
-            </v-card> 
+            </v-card>
           </div>
         </div>
     </div>
@@ -223,7 +229,7 @@
 
     .main-hero{
         padding-top: 60px;
-        min-height: 90vh;
+        min-height: 100vh;
         position: relative;
         background-image: url('../../assets/images/auth-bg.png');
         background-position: bottom;
@@ -235,7 +241,7 @@
 
     .login-background {
       width: 100%;
-      height: 90vh;
+      height: 100vh;
       position: absolute;
     }
 </style>

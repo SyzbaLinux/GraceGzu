@@ -5,6 +5,7 @@
                 v-else
                 v-model="toggle"
                 persistent
+                max-width="600"
         >
             <v-card>
                 <v-toolbar flat dark  color="#8E24AA"  dense class="mb-5">

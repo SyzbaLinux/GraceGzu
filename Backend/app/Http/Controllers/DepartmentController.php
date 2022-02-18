@@ -63,7 +63,7 @@ class DepartmentController extends Controller
     public function show(Department $department)
     {
         return  Department::where('id',$department->id)
-            ->with(['users','projects','owner'])
+            ->with(['users','projects','owner','tasks'])
             ->firstOrFail();
     }
 

@@ -9,7 +9,7 @@
         </v-toolbar>
 
         <v-card
-            class="mx-auto ml-1 mr-2"
+            class="mx-auto ml-3 mr-3"
             style="margin-top: -44px;"
         >
             <v-toolbar flat>
@@ -20,6 +20,7 @@
                 <v-dialog
                     v-model="toggle"
                     persistent
+                    max-width="600"
                 >
                     <template v-slot:activator="{ on, attrs }">
                         <v-btn
@@ -34,7 +35,7 @@
                     <v-card>
                         <v-toolbar flat dark  color="#8E24AA"  dense class="mb-5">
                             <v-toolbar-title  >
-                                <i class="mdi-server-network"></i> New Project Stage
+                                <i class="mdi mdi-server-network"></i> New Project Stage
                             </v-toolbar-title>
                         </v-toolbar>
 
@@ -42,7 +43,7 @@
                             <v-form>
                                 <v-text-field
                                     outlined
-                                    label="Full Name"
+                                    label="Project Stage Name"
                                     v-model="form.name"
                                     :rules="nameRulesErrors"
                                     :error-messages="nameErrors"

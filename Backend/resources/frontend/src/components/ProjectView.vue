@@ -20,6 +20,7 @@
                 <v-dialog
                     v-model="toggleTask"
                     persistent
+                    max-width="600"
                 >
                     <template v-slot:activator="{ on, attrs }">
                         <v-btn
@@ -125,6 +126,10 @@
                          <v-btn v-if="item.status ==='Completed'" class="menu-btn" small rounded color="success">
                              {{ item.status }}
                          </v-btn>
+
+                        <v-btn v-else-if="item.status ==='Done'" class="menu-btn" small dark rounded color="blue">
+                            {{ item.status }}
+                        </v-btn>
                         <v-btn v-else class="menu-btn" small rounded color="warning">
                             {{ item.status }}
                         </v-btn>

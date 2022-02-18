@@ -21,11 +21,16 @@
           clickMode="push"
       ></vue-particles>
       <div class="text-center mt-15 container">
+
+          <v-avatar   size="60" color="primary" class="mb-5">
+              <v-icon color="white">mdi-shield mdi-24px</v-icon>
+          </v-avatar>
+
         <v-card  class="mx-auto text-center" max-width="500">
           <v-card-title class="mb-5 pt-5">
             <v-toolbar dark dense color="primary">
-              <v-toolbar-title>
-                Create Account
+              <v-toolbar-title class="w-100 text--center">
+                Create Your SIDRC Account
               </v-toolbar-title>
             </v-toolbar>
           </v-card-title>
@@ -115,7 +120,7 @@
 
           <v-card-actions class="elevation-3 mt-5 mb-5">
             <v-container class="text-center">
-              New to our here? <router-link :to="{ name:'register'}">Create Free Account</router-link>
+              Already Have an Account? <router-link :to="{ name:'login'}">Login</router-link>
             </v-container>
           </v-card-actions>
         </v-card>
@@ -267,7 +272,7 @@ export default {
 
 .login-background {
   width: 100%;
-  height: 75vh;
+  height: 100vh;
   position: absolute;
 }
 </style>

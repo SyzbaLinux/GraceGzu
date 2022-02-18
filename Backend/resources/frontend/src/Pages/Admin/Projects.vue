@@ -22,30 +22,27 @@
             <v-card rounded="lg"
                     class="my-3"
                     outlined
-
+                    v-for="(project, index) in projects"
+                    :key="index"
+                    :to="{name:'admin.project.view', params:{ id:project.id}}"
             >
                 <v-progress-linear
                         value="60"
                         absolute
-                        top
+                        bottom
                         color="success"
                 ></v-progress-linear>
 
                 <v-card-title>
-                     Building Space X
+                      {{ project.name }}
                 </v-card-title>
                 <v-card-text class="mt-n4 d-flex justify-space-between">
                     <div>
-                        <span>60</span> Completed Tasks / 100 <br>
-                        <span>10</span> Users on Tasks <br>
-                        <span>4</span> Departments <br>
+                        <span>{{ project.tasks_count  }}</span> Tasks  <br>
+                        <span>{{ project.departments_count }}</span> Departments <br>
                     </div>
                 </v-card-text>
-
-
-
             </v-card>
-
             <v-fab-transition>
                 <v-btn
                         fab

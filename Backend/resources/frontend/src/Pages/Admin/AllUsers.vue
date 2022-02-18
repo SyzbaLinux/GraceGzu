@@ -107,11 +107,10 @@
                     if (result.isConfirmed) {
 
                           axios.delete('admin/users/'+user).then(res=>{
-                            this.successMessage(res.data.message)
-                            this.fetchUsers()
+                            this.fireInfo(res.data.message)
 
                         }).catch(error=>{
-                           this.logMessage(error)
+                              this.successMessage(error.message)
                         })
 
                     }
